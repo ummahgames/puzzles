@@ -1,0 +1,530 @@
+[
+  {
+    "stage": 1,
+    "title": "First light",
+    "won": true,
+    "volleys": 2,
+    "score": 34,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.8507044449240713
+      }
+    ]
+  },
+  {
+    "stage": 2,
+    "title": "Around the bend",
+    "won": true,
+    "volleys": 3,
+    "score": 54,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.8507044449240713
+      }
+    ]
+  },
+  {
+    "stage": 3,
+    "title": "Return address",
+    "won": true,
+    "volleys": 3,
+    "score": 60,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 4,
+    "title": "Stored sunlight",
+    "won": true,
+    "volleys": 3,
+    "score": 77,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 5,
+    "title": "Chain reaction",
+    "won": true,
+    "volleys": 3,
+    "score": 67,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.763437982324355
+      }
+    ]
+  },
+  {
+    "stage": 6,
+    "title": "Dawn chorus",
+    "won": true,
+    "volleys": 4,
+    "score": 95,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.792526803190927
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.6470826988580662
+      },
+      {
+        "angle": -2.792526803190927
+      }
+    ]
+  },
+  {
+    "stage": 7,
+    "title": "Refraction",
+    "won": true,
+    "volleys": 3,
+    "score": 105,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -0.552687596464871
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 8,
+    "title": "The long way home",
+    "won": true,
+    "volleys": 3,
+    "score": 105,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.763437982324355
+      },
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.8216156240574994
+      }
+    ]
+  },
+  {
+    "stage": 9,
+    "title": "Glass garden",
+    "won": true,
+    "volleys": 3,
+    "score": 122,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.414372131925489
+      },
+      {
+        "angle": -2.8216156240574994
+      }
+    ]
+  },
+  {
+    "stage": 10,
+    "title": "Parallel worlds",
+    "won": true,
+    "volleys": 3,
+    "score": 113,
+    "stars": 3,
+    "recalls": 2,
+    "inputs": [
+      {
+        "angle": -2.007128639793479
+      },
+      {
+        "angle": -0.5817764173314428
+      },
+      {
+        "angle": -2.792526803190927
+      }
+    ]
+  },
+  {
+    "stage": 11,
+    "title": "Crossed paths",
+    "won": true,
+    "volleys": 4,
+    "score": 140,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.763437982324355
+      },
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.0362174606600507
+      },
+      {
+        "upgrade": "reserve"
+      },
+      {
+        "angle": -2.7343491614577826
+      }
+    ]
+  },
+  {
+    "stage": 12,
+    "title": "Prism heart",
+    "won": true,
+    "volleys": 4,
+    "score": 148,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.3852833110589167
+      },
+      {
+        "angle": -1.163552834662886
+      },
+      {
+        "angle": -2.7343491614577826
+      },
+      {
+        "upgrade": "swarm"
+      },
+      {
+        "angle": -2.8216156240574994
+      }
+    ]
+  },
+  {
+    "stage": 13,
+    "title": "Shadow line",
+    "won": true,
+    "volleys": 2,
+    "score": 127,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.163552834662886
+      },
+      {
+        "angle": -2.8507044449240713
+      }
+    ]
+  },
+  {
+    "stage": 14,
+    "title": "Open flank",
+    "won": true,
+    "volleys": 3,
+    "score": 137,
+    "stars": 3,
+    "recalls": 1,
+    "inputs": [
+      {
+        "angle": -0.46542113386515416
+      },
+      {
+        "angle": -2.55981623625835
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 15,
+    "title": "Amber vault",
+    "won": true,
+    "volleys": 3,
+    "score": 159,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.134464013796314
+      },
+      {
+        "angle": -2.1525727441263394
+      },
+      {
+        "upgrade": "bank"
+      },
+      {
+        "angle": -2.792526803190927
+      }
+    ]
+  },
+  {
+    "stage": 16,
+    "title": "Night bloom",
+    "won": true,
+    "volleys": 3,
+    "score": 191,
+    "stars": 3,
+    "recalls": 1,
+    "inputs": [
+      {
+        "angle": -1.2508192972626027
+      },
+      {
+        "angle": -2.5016385945252053
+      },
+      {
+        "upgrade": "bank"
+      },
+      {
+        "angle": -2.8507044449240713
+      }
+    ]
+  },
+  {
+    "stage": 17,
+    "title": "Two sides",
+    "won": true,
+    "volleys": 3,
+    "score": 161,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.3671745807288913
+      },
+      {
+        "angle": -2.065306281526623
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.414372131925489
+      }
+    ]
+  },
+  {
+    "stage": 18,
+    "title": "Eclipse engine",
+    "won": true,
+    "volleys": 3,
+    "score": 177,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.1053751929297417
+      },
+      {
+        "angle": -2.4725497736586335
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 19,
+    "title": "Afterglow",
+    "won": true,
+    "volleys": 3,
+    "score": 185,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -1.163552834662886
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 20,
+    "title": "Light bridge",
+    "won": true,
+    "volleys": 3,
+    "score": 218,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.5707963267948963
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 21,
+    "title": "Supercluster",
+    "won": true,
+    "volleys": 3,
+    "score": 220,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.134464013796314
+      },
+      {
+        "angle": -2.8216156240574994
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.588905057124922
+      }
+    ]
+  },
+  {
+    "stage": 22,
+    "title": "Event horizon",
+    "won": true,
+    "volleys": 4,
+    "score": 234,
+    "stars": 3,
+    "recalls": 1,
+    "inputs": [
+      {
+        "angle": -0.46542113386515416
+      },
+      {
+        "angle": -2.7343491614577826
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "angle": -2.8797932657906435
+      }
+    ]
+  },
+  {
+    "stage": 23,
+    "title": "Last orbit",
+    "won": true,
+    "volleys": 4,
+    "score": 258,
+    "stars": 3,
+    "recalls": 0,
+    "inputs": [
+      {
+        "angle": -1.1053751929297417
+      },
+      {
+        "angle": -2.8507044449240713
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.8507044449240713
+      }
+    ]
+  },
+  {
+    "stage": 24,
+    "title": "A new star",
+    "won": true,
+    "volleys": 4,
+    "score": 277,
+    "stars": 3,
+    "recalls": 1,
+    "inputs": [
+      {
+        "angle": -1.2508192972626027
+      },
+      {
+        "angle": -2.792526803190927
+      },
+      {
+        "upgrade": "power"
+      },
+      {
+        "angle": -2.8797932657906435
+      },
+      {
+        "angle": -2.792526803190927
+      }
+    ]
+  }
+]

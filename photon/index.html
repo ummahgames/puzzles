@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080f21">
+  <meta name="description" content="Find your angle. A luminous ricochet game with 24 campaign stages, endless survival, and a daily constellation. Plays entirely on your device.">
+  <title>Photon — find your angle</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="screen.css?v=4">
+</head>
+<body data-ug-game="photon">
+<script src="portable-profile.js"></script>
+  <main class="app" id="app">
+    <section id="home" class="home" aria-labelledby="homeTitle">
+      <header class="brand"><span class="brand-mark" aria-hidden="true">✦</span><span>PHOTON</span><span class="brand-caption">A game of light &amp; possibility</span></header>
+      <div class="home-layout">
+        <div class="home-copy">
+          <p class="eyebrow">ONE ANGLE. ENDLESS POSSIBILITIES.</p>
+          <h1 id="homeTitle">Find your<br><span>angle.</span></h1>
+          <p class="home-description">A little light goes a long way. Send a constellation of photons through crystal gardens. Bank, bloom, and make room for the next wave.</p>
+          <div class="home-actions">
+            <button class="button primary" id="continueBtn" hidden>Continue your journey <span aria-hidden="true">↗</span></button>
+            <button class="button primary" id="campaignBtn">Explore the campaign <span aria-hidden="true">↗</span></button>
+            <div class="paired-actions"><button class="button" id="survivalBtn">∞ Survival</button><button class="button" id="dailyBtn">✦ Daily constellation</button></div>
+          </div>
+          <div class="home-meta"><button class="text-button" id="settingsBtn">Settings &amp; saves</button><span id="homeProgress">24 stages · 4 chapters · all on your device</span></div>
+        </div>
+        <div class="orbit-art" aria-hidden="true">
+          <svg viewBox="0 0 440 530" class="hero-art">
+            <defs><radialGradient id="orb"><stop stop-color="#70e4f2" stop-opacity=".15"/><stop offset="1" stop-color="#70e4f2" stop-opacity="0"/></radialGradient><linearGradient id="crystal" x2="0" y2="1"><stop stop-color="#31455d"/><stop offset="1" stop-color="#16263d"/></linearGradient></defs>
+            <circle cx="215" cy="240" r="210" fill="url(#orb)"/>
+            <g fill="none" stroke="#284056" stroke-width="1"><ellipse cx="220" cy="265" rx="185" ry="200" transform="rotate(24 220 265)"/><ellipse cx="220" cy="265" rx="120" ry="200" transform="rotate(-35 220 265)"/></g>
+            <path d="M220 463 39 273 201 101 361 268 235 402" fill="none" stroke="#70e4f2" stroke-opacity=".55" stroke-width="2" stroke-dasharray="5 8"/>
+            <g fill="url(#crystal)" stroke="#536e86"><rect x="114" y="116" width="56" height="38" rx="8"/><rect x="178" y="116" width="56" height="38" rx="8"/><rect x="242" y="116" width="56" height="38" rx="8"/><rect x="145" y="165" width="56" height="38" rx="8"/><rect x="209" y="165" width="56" height="38" rx="8"/><rect x="273" y="165" width="56" height="38" rx="8"/><rect x="114" y="214" width="56" height="38" rx="8"/></g>
+            <rect x="178" y="214" width="56" height="38" rx="8" fill="#243742" stroke="#ffd38a"/>
+            <g fill="#dcecf5" text-anchor="middle" font-size="14" font-family="system-ui"><text x="142" y="140">2</text><text x="206" y="140">3</text><text x="270" y="140">2</text><text x="173" y="189">1</text><text x="237" y="189">2</text><text x="301" y="189">1</text><text x="142" y="238">3</text><text x="206" y="238" fill="#ffd38a">✦</text></g>
+            <g fill="#edfaff"><circle cx="220" cy="463" r="7"/><circle cx="197" cy="439" r="4"/><circle cx="174" cy="415" r="4"/><circle cx="151" cy="391" r="4"/><circle cx="128" cy="367" r="4"/></g>
+            <g fill="#70e4f2"><circle cx="39" cy="273" r="4"/><circle cx="201" cy="101" r="4"/><circle cx="361" cy="268" r="4"/></g>
+            <text x="220" y="511" fill="#7994ad" font-size="10" letter-spacing="3" text-anchor="middle" font-family="system-ui">EVERY BOUNCE IS A NEW POSSIBILITY</text>
+          </svg>
+          <div class="art-caption"><span class="status-dot"></span> No downloads. No accounts. Just light.</div>
+        </div>
+      </div>
+      <footer class="home-footer"><span>Built for a moment of focus.</span><span>Mouse · touch · keyboard</span></footer>
+    </section>
+    <section id="campaign" class="campaign" hidden aria-labelledby="campaignTitle">
+      <header class="page-header"><button class="icon-button" id="mapBack" aria-label="Return home">←</button><div><p class="eyebrow">YOUR JOURNEY</p><h1 id="campaignTitle">Follow the light.</h1></div><span id="starTotal" class="star-total">0 / 72 ✦</span></header>
+      <p class="map-description">Each chapter opens a new way to think. Finish a stage to open the next; come back for its three mastery stars.</p>
+      <div id="chapterList" class="chapter-list"></div>
+    </section>
+    <section id="play" class="play" hidden aria-label="Photon game">
+      <aside class="play-aside"><a class="wordmark" href="#" id="playHome">✦ PHOTON</a><p class="eyebrow" id="chapterLabel">DAWN / 01</p><h1 id="stageTitle">First light</h1><p id="stageLesson" class="stage-lesson"></p><div class="objective-card"><span class="eyebrow">YOUR OBJECTIVE</span><p id="objectiveText"></p><p id="challengeText" class="muted"></p></div><div class="legend" id="legend"><p><span class="legend-dot normal"></span>Crystals · hit to clear</p><p><span class="legend-dot bomb"></span>Blooms · chain reaction</p><p><span class="legend-dot shield"></span>Shields · bank around the top</p><p><span class="legend-dot prism"></span>Prisms · permanent reflectors</p></div><p class="keyboard-hint">← → Aim · Space Fire<br>F Speed · R Recall · Esc Pause</p><button class="text-button" id="helpBtn">How light works ↗</button></aside>
+      <div class="game-shell">
+        <header class="game-header"><button class="icon-button" id="pauseBtn" aria-label="Pause game">Ⅱ</button><div><span class="eyebrow" id="modeLabel">CAMPAIGN</span><strong id="waveLabel">Wave 1 / 2</strong></div><div class="score-display"><span class="eyebrow">SCORE</span><strong id="scoreLabel">0</strong></div><button class="icon-button" id="muteBtn" aria-label="Mute sound" aria-pressed="false">♪</button></header>
+        <div class="board-wrap" id="boardWrap"><canvas id="game" width="360" height="640" tabindex="0" aria-label="Photon board. Use left and right arrows to aim, Space to fire, F for fast forward, R to recall, and Escape to pause."></canvas><div class="board-toast" id="boardToast" role="status"></div></div>
+        <footer class="game-footer"><div class="loadout-row"><span><span class="mini-label">PHOTONS</span><strong id="photonLabel">3</strong></span><span><span class="mini-label">DAMAGE</span><strong id="damageLabel">1</strong></span><span class="resonance-label"><span class="mini-label">RESONANCE</span><span id="resonanceLabel" aria-label="Clear five crystals in a volley to charge a Nova pulse">○ ○ ○ ○ ○</span></span></div><div class="buff-row" id="buffRow" aria-label="Effects for the next volley"></div><div class="control-row"><button class="button compact" id="speedBtn" aria-pressed="false" title="Fast forward (F)">1× Speed</button><button class="button primary compact" id="fireBtn">Fire volley <span aria-hidden="true">↗</span></button><button class="button compact" id="recallBtn" disabled title="Recall after four seconds (R)">Recall</button></div><p class="turn-hint" id="turnHint">Move to aim · click to fire</p></footer>
+      </div>
+      <aside class="right-aside"><p class="eyebrow">LIGHT LOG</p><div id="runLog" class="run-log"></div><div class="seed-card"><span class="mini-label">CONSTELLATION SEED</span><code id="seedLabel"></code><button class="text-button" id="copySeedBtn">Copy seed</button></div><p class="quiet-note">Progress lives on this device. Refreshing returns to the start of your current volley.</p></aside>
+    </section>
+  </main>
+  <dialog id="modal" class="modal" aria-labelledby="modalTitle"><div id="modalBody"></div></dialog>
+  <input type="file" id="importFile" accept="application/json,.json" hidden>
+  <div id="announcer" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <script src="content.js"></script>
+  <script src="core.js"></script>
+  <script src="storage.js"></script>
+  <script src="render.js"></script>
+  <script src="game.js"></script>
+<script src="screen.js?v=4"></script>
+</body>
+</html>

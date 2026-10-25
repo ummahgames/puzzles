@@ -1,0 +1,29 @@
+/* Scoped display controls, usable with every game's own visual theme. */
+.ug-screen-toggle{box-sizing:border-box!important;display:inline-flex!important;align-items:center;justify-content:center;flex:0 0 44px;width:44px!important;min-width:44px!important;height:44px!important;min-height:44px!important;padding:10px!important;border:1px solid currentColor!important;border-radius:12px!important;background:transparent!important;color:inherit!important;cursor:pointer;touch-action:manipulation;pointer-events:auto;vertical-align:middle}
+.ug-screen-toggle svg{display:block!important;width:22px!important;height:22px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ug-screen-label,.ug-screen-status:not(.ug-screen-notice){position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.ug-screen-toggle:focus-visible,.ug-screen-exit:focus-visible{outline:3px solid #d3a942!important;outline-offset:3px}
+.ug-screen-exit{position:fixed;z-index:2147483000;right:max(8px,env(safe-area-inset-right));bottom:max(8px,env(safe-area-inset-bottom));min-height:44px;padding:9px 14px;border:1px solid #688279;border-radius:12px;background:#173e35;color:#fffcef;font:600 13px/1.3 system-ui,sans-serif;box-shadow:0 3px 16px #0003;cursor:pointer;touch-action:manipulation}
+.ug-screen-exit[hidden]{display:none!important}
+.ug-screen-notice{position:fixed;z-index:2147482999;left:max(12px,env(safe-area-inset-left));bottom:max(64px,calc(env(safe-area-inset-bottom) + 56px));width:min(340px,calc(100% - 24px));margin:0;padding:10px 14px;border-radius:12px;color:#fffcef;background:#173e35;font:13px/1.5 system-ui,sans-serif;pointer-events:none}
+html.ug-fullscreen{width:100%;height:100%;min-height:100dvh;overflow:auto}
+.ug-fullscreen body{min-height:100dvh}
+.ug-fullscreen .shell{max-width:1600px}
+/* The exit never covers a canvas: reserve space below its touch controls. */
+.ug-fullscreen body{padding-bottom:60px}
+.ug-fullscreen body[data-ug-game="swipe"]{padding-bottom:0}
+.ug-fullscreen body[data-ug-game="swipe"] .ug-screen-exit{top:max(8px,env(safe-area-inset-top));bottom:auto;right:50%;transform:translateX(50%)}
+.ug-fullscreen body[data-ug-game="pearls"] .touch-controls{bottom:76px}
+.ug-fullscreen body[data-ug-game="pearls"] .ability-bar{bottom:64px}
+/* Long labels wrap rather than stretching phone headers or hiding controls. */
+.ug-screen-host{flex-wrap:wrap}
+.ug-screen-toggle.ug-screen-secondary{display:none!important}
+@media(max-height:570px) and (orientation:landscape){body[data-ug-game="find-the-animal"] .ug-screen-secondary{display:inline-flex!important}}
+@media(max-height:570px) and (orientation:landscape){body[data-ug-game="find-the-animal"]:has(#playScreen:not(.active)) .app-header{display:flex}}
+@media(max-width:640px) and (max-height:650px){body[data-ug-game="dune-arcanum"] .ug-screen-secondary{display:inline-flex!important}}
+@media(min-width:641px) and (max-height:520px){body[data-ug-game="dune-arcanum"] .ug-screen-secondary{display:inline-flex!important}}
+@media(max-width:760px){.ug-screen-host{gap:5px!important}.ug-screen-host.ug-screen-host{min-width:0}.ug-screen-toggle{flex-basis:44px}.ug-fullscreen .shell{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}}
+@media(pointer:coarse){.ug-screen-host button,.ug-screen-host a{min-height:44px}.ug-screen-host button{touch-action:manipulation}}
+@media(pointer:coarse){body[data-game] .tool,body[data-game] .cell,body[data-game] .direction-pad button,body[data-game] .joint-controls button{min-height:44px;touch-action:manipulation}}
+@media(prefers-reduced-motion:reduce){.ug-screen-toggle,.ug-screen-exit{transition:none!important}}
+.ug-profile-open{min-width:44px;min-height:44px;padding:8px 12px;border:1px solid currentColor;border-radius:10px;background:transparent;color:inherit;font:600 12px system-ui;cursor:pointer}.ug-profile-dialog{box-sizing:border-box;width:min(92vw,560px);max-height:85dvh;overflow:auto;padding:24px;border:1px solid #cdd5c3;border-radius:18px;background:#fffaf0;color:#243e3a;font:16px/1.6 system-ui}.ug-profile-dialog::backdrop{background:#173e3580}.ug-profile-dialog textarea{box-sizing:border-box;width:100%;font:13px/1.5 monospace;padding:10px}.ug-profile-dialog>div{display:flex;gap:8px;flex-wrap:wrap}.ug-profile-dialog button{min-height:44px;padding:8px 14px;border:1px solid #93a597;border-radius:9px;background:#edf0df;color:#243e3a;cursor:pointer}.ug-profile-dialog:focus-visible{outline:3px solid #2c80aa}.ug-screen-notice{animation:ug-notice-dismiss .2s 5s forwards}@keyframes ug-notice-dismiss{to{opacity:0;visibility:hidden}}
