@@ -105,7 +105,7 @@
     s.path=[14,15,16,17,18,19,20];s.solution=[{type:'build',pos:9,kind:'snack'},{type:'build',pos:10,kind:'bell'},{type:'build',pos:11,kind:'snack'},{type:'build',pos:23,kind:'bell'},{type:'build',pos:25,kind:'bell'}];s.solution=buildRoute(s);return s;
   };
   (typeof module!=='undefined'?require('./specialized-procedural.js'):specialized)(E,generators);
-  E.procedural={version:1,supported:Object.keys(generators).filter(slug=>!['sandcastle-helpers','button-burrows','museum-of-impossible-rooms'].includes(slug)),canonical,nextNumber,valid:descriptor=>!!descriptor&&Object.keys(descriptor).length===3&&[1,2].includes(descriptor.version)&&typeof descriptor.number==='string'&&/^[1-9]\d{0,59}$/.test(descriptor.number)&&Number.isInteger(descriptor.difficulty)&&descriptor.difficulty>=0&&descriptor.difficulty<=7};
+  E.procedural={version:1,supported:Object.keys(generators).filter(slug=>!['sandcastle-helpers','button-burrows','museum-of-impossible-rooms','who-made-that-sound'].includes(slug)),canonical,nextNumber,valid:descriptor=>!!descriptor&&Object.keys(descriptor).length===3&&[1,2].includes(descriptor.version)&&typeof descriptor.number==='string'&&/^[1-9]\d{0,59}$/.test(descriptor.number)&&Number.isInteger(descriptor.difficulty)&&descriptor.difficulty>=0&&descriptor.difficulty<=7};
   const carpetChallenge=(typeof module!=='undefined'?require('./carpet-challenges.js'):window.MiniCarpetChallenges);
   E.generate=function(slug,number,difficulty=3,version=1){
     if(version===2&&slug==='carpet-unroll')return carpetChallenge.generate(E,number,difficulty);

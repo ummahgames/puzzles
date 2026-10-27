@@ -1,7 +1,6 @@
 (function(root){'use strict';
   const rows=[
     [3,'patchwork-parade','Patchwork Parade','🧵','#ac5f79','Stitch a little celebration.','Fit fabric pieces into animal floats, turn the patches, and send your creation into a parade.'],
-    [5,'who-made-that-sound','Who Made That Sound?','🔔','#5b8b79','A little listen. A little discovery.','Listen to friendly neighborhood sounds and discover their sources, with visual clues available.'],
     [11,'pantry-shuffle','Pantry Shuffle','🍯','#b67d40','Make room for a little goodness.','Slide rolling fruit and steady flour sacks around pantry shelves to assemble a recipe.'],
     [13,'match-to-mend','Match to Mend','🪁','#b56b56','Little matches make lovely repairs.','Clear connected groups of materials, let the pieces fall, and repair a neighbor’s treasured object.'],
     [14,'market-crates','Market Crates','🥕','#72934d','A place for every market basket.','Maneuver differently shaped produce crates into their marked market bays.'],

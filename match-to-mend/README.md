@@ -26,4 +26,4 @@ The Save code button exports a versioned code containing completed levels, curre
 
 ## Development
 
-Canonical source lives in ../../game-kit/. Run node game-kit/build.cjs from the workspace root after changing it. This copies the browser files into each independent game folder. Run node game-kit/test.cjs for all game suites, including all 368 toolkit level solutions.
+Canonical source lives in ../../game-kit/. Run node game-kit/build.cjs from the workspace root after changing it. This copies the browser files into each independent game folder. Run node game-kit/test.cjs for all game suites, including all 360 toolkit level solutions.
