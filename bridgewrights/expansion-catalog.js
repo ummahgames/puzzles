@@ -17,7 +17,6 @@
     [29,'oasis-council','Oasis Council','🌴','#558a83','Share the water. Grow a village.','Connect water channels, orchards, and homes to build a thriving small oasis.'],
     [30,'forecast-fighters','Forecast Fighters','🌦','#737faf','Read the sky. Plan two steps ahead.','Queue two actions, predict your opponent, and contest the center of a changing arena.'],
     [33,'pocket-post-office','Pocket Post Office','📮','#b36363','Give a tiny cart a thoughtful plan.','Program turns, pickups, and deliveries through a pocket-sized postal route.'],
-    [34,'museum-of-impossible-rooms','Museum of Impossible Rooms','🖼','#86709c','Every room has another idea.','Turn strange rooms and reconnect paths to recover three museum exhibits.'],
     [36,'constellation-switchyard','Constellation Switchyard','🚂','#596f98','A clear track through the stars.','Set rail switches and advance star trains one step at a time to their platforms.'],
     [37,'the-honest-the-mistaken-and-the-mixed-up','The Honest, the Mistaken, and the Mixed-Up','🕵','#8f7e5c','Every witness has a point of view.','Translate truthful, reversed, and yesterday-based clues to solve a village mystery.'],
     [38,'gravity-suitcase','Gravity Suitcase','🧳','#98735f','Pack with a little care.','Drop, compress, and settle unusual luggage while keeping fragile souvenirs supported.'],

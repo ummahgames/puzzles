@@ -2,13 +2,11 @@
   'use strict';
   const games = [
     [4, 'puddle-engineers', 'Puddle Engineers', '🌧', '#267d93', 'Turn the gutters. Wake the flowers.', 'Rotate gutters to carry a rain cloud’s water to every thirsty flowerpot.'],
-    [6, 'sandcastle-helpers', 'Sandcastle Helpers', '🏰', '#b36b36', 'A little sand. A grand idea.', 'Build a sandcastle from shaped blocks, leaving a tunnel for the little crab.'],
     [7, 'picnic-pairs', 'Picnic Pairs', '🧺', '#a34765', 'A blanket full of little surprises.', 'Turn over picnic blankets and find the things that belong together.'],
     [8, 'cloud-shepherd', 'Cloud Shepherd', '☁', '#397cab', 'Bring a little shape to the sky.', 'Move, merge, and split soft clouds until every outline is filled.'],
     [9, 'mosaic-courtyard', 'Mosaic Courtyard', '✥', '#39776a', 'One tile. A whole new pattern.', 'Slide rows and columns of patterned tiles to restore a courtyard mosaic.'],
     [10, 'carpet-unroll', 'Carpet Unroll', '▤', '#9c5169', 'A room for every little rug.', 'Choose the order to unroll colorful carpets and cover the whole floor.'],
     [12, 'bookworm-caravan', 'Bookworm Caravan', '📚', '#756098', 'Little words travel a long way.', 'Trace neighboring letters to deliver words to the traveling library.'],
-    [16, 'button-burrows', 'Button Burrows', '🧵', '#aa6740', 'A stitch. A switch. A way home.', 'Swap neighboring tunnel buttons to reconnect a burrow from entrance to home.'],
     [18, 'folded-worlds', 'Folded Worlds', '◩', '#587995', 'Small folds. Unexpected journeys.', 'Fold a paper landscape to bring paths together, then walk your traveler home.'],
     [19, 'orchard-guardians', 'Orchard Guardians', '🍎', '#527f43', 'Keep the harvest. Make new friends.', 'Place bell posts and snack baskets to send orchard visitors home happy.'],
     [20, 'caravan-breakthrough', 'Caravan Breakthrough', '🐪', '#a26b40', 'Choose your crew. Find your way.', 'Plan a caravan’s departure order and route through a row of clockwork defenses.'],

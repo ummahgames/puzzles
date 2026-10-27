@@ -2,7 +2,7 @@
 
 Fold a paper landscape to bring paths together, then walk your traveler home.
 
-Eight campaign levels plus a repeatable generated-level mode with no final level, undo for the 100 most recent gameplay steps, gentle retries, and portable progress codes. Open index.html directly, or host this folder unchanged on any static host. No install, build step, dependencies, tracking, accounts, or backend is required for players. All runtime assets are local.
+A direct Start / How to play / Settings menu, optional difficulty, and fresh puzzles. Eight optional campaign puzzles plus repeatable generated play, undo for the 100 most recent gameplay steps, gentle retries, and portable progress codes. Open index.html directly, or host this folder unchanged on any static host. No install, build step, dependencies, tracking, accounts, or backend is required for players. All runtime assets are local.
 
 ## Generated play
 
@@ -22,4 +22,4 @@ The Save code button exports a versioned code containing completed levels, curre
 
 ## Development
 
-Canonical source lives in ../../game-kit/. Run node game-kit/build.cjs from the workspace root after changing it. This copies the browser files into each independent game folder. Run node game-kit/test.cjs for all game suites, including all 392 toolkit level solutions.
+Canonical source lives in ../../game-kit/. Run node game-kit/build.cjs from the workspace root after changing it. This copies the browser files into each independent game folder. Run node game-kit/test.cjs for all game suites, including all 368 toolkit level solutions.

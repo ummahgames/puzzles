@@ -68,7 +68,7 @@
     function flushSave(){clearTimeout(saveTimer);saveTimer=null;try{window.history.replaceState(null,'',location.pathname+location.search+'#save='+packed());lastSaved=Date.now();}catch(_){}}
     function save(){if(Date.now()-lastSaved>=600)flushSave();else{clearTimeout(saveTimer);saveTimer=setTimeout(flushSave,600-(Date.now()-lastSaved));}}
     window.addEventListener('pagehide',flushSave);
-    function begin(n,restored){stop();level=n;state=restored?.state||E.create(slug,n);actions=restored?.actions||[];history=[];$('result').close();$('home').hidden=true;$('play').hidden=false;render();flushSave();$('playTitle').focus({preventScroll:true});window.scrollTo(0,0);if(state.won)complete();}
+    function begin(n,restored){stop();level=n;state=restored?.state||E.create(slug,n);actions=restored?.actions||[];history=[];$('result').close();$('home').hidden=true;$('play').hidden=false;render();flushSave();window.MiniPresentation?.started();$('playTitle').focus({preventScroll:true});window.scrollTo(0,0);if(state.won)complete();}
     function home(){stop();$('result').close();$('play').hidden=true;$('home').hidden=false;levels();window.scrollTo(0,0);}
     function levels(){$('levelList').replaceChildren(...E.range(8).map(i=>btn(`${mask&(1<<i)?'✓ ':''}${i+1}. ${title(i)}`,()=>begin(i),'level-card')));$('progress').textContent=`${E.range(8).filter(i=>mask&(1<<i)).length} of 8 complete`;}
     function undo(){stop();if(history.length)state=history.pop();render();save();}
@@ -206,7 +206,7 @@
       if(slug==='the-traveling-repair-shop'&&effects)playTone(state.mode==='music'?'chime':'bell');
       perform({type:'run'});
     };
-    $('undo').onclick=undo;$('restart').onclick=()=>state._generated?procedural.open(state._generated.number,state._generated.difficulty):begin(level);$('levels').onclick=home;$('homeLink').onclick=home;$('begin').onclick=()=>begin(E.range(8).find(i=>!(mask&(1<<i)))??0);$('allLevels').onclick=()=>$('levelList').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+    $('undo').onclick=undo;$('restart').onclick=()=>state._generated?procedural.open(state._generated.number,state._generated.difficulty,state._generated.version):begin(level);$('levels').onclick=home;$('homeLink').onclick=home;$('begin').onclick=()=>begin(E.range(8).find(i=>!(mask&(1<<i)))??0);$('allLevels').onclick=()=>$('levelList').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
     $('sound').textContent='Effects off';$('sound').onclick=()=>{effects=!effects;$('sound').textContent=effects?'Effects on':'Effects off';$('sound').setAttribute('aria-pressed',effects);};
     $('help').onclick=()=>{stop();render();$('helpText').textContent=$('lesson').textContent;$('helpDialog').showModal();};
     $('save').onclick=()=>{stop();render();$('saveInput').value=packed();$('saveStatus').textContent='';$('saveDialog').showModal();};
@@ -216,10 +216,11 @@
     $('result').addEventListener('cancel',event=>{event.preventDefault();home();});
     $('next').onclick=()=>{if(state._generated)procedural.next(state);else if(level<7)begin(level+1);else home();};$('finishLevels').onclick=home;
     document.addEventListener('visibilitychange',()=>{if(document.hidden){stop();if(!$('play').hidden)render();}});
-    document.addEventListener('keydown',event=>{if($('play').hidden||document.querySelector('dialog[open]')||event.target.matches('input,textarea,select,button,a,summary'))return;const arrows={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3},wasd={w:0,d:1,s:2,a:3};if(slug==='rooftop-ribbon-run'){if(event.key==='ArrowUp'){event.preventDefault();perform({type:'jump'});}if(event.key==='ArrowDown'){event.preventDefault();perform({type:'duck'});}return;}if(slug==='two-ends-of-a-scarf'&&(arrows[event.key]!==undefined||wasd[event.key]!==undefined)){event.preventDefault();perform({type:'select',index:arrows[event.key]!==undefined?1:0});perform({type:'move',dir:arrows[event.key]??wasd[event.key]});return;}if(['pantry-shuffle','market-crates','beetle-ball'].includes(slug)&&arrows[event.key]!==undefined){event.preventDefault();perform({type:'move',dir:arrows[event.key]});}});
+    document.addEventListener('keydown',event=>{if($('play').hidden||document.querySelector('dialog[open]')||event.target.matches('input,textarea,select')||event.target.isContentEditable)return;const arrows={ArrowUp:0,ArrowRight:1,ArrowDown:2,ArrowLeft:3},wasd={w:0,d:1,s:2,a:3};if(slug==='rooftop-ribbon-run'){if(event.key==='ArrowUp'){event.preventDefault();perform({type:'jump'});}if(event.key==='ArrowDown'){event.preventDefault();perform({type:'duck'});}return;}if(slug==='two-ends-of-a-scarf'&&(arrows[event.key]!==undefined||wasd[event.key]!==undefined)){event.preventDefault();perform({type:'select',index:arrows[event.key]!==undefined?1:0});perform({type:'move',dir:arrows[event.key]??wasd[event.key]});return;}if(['pantry-shuffle','market-crates','beetle-ball'].includes(slug)&&arrows[event.key]!==undefined){event.preventDefault();perform({type:'move',dir:arrows[event.key]});}});
     document.documentElement.style.setProperty('--accent',meta.color);$('gameTitle').textContent=meta.title;$('heroTitle').textContent=meta.tagline;$('heroDescription').textContent=meta.description;$('heroIcon').textContent=meta.icon;$('heroLabel').textContent=meta.title;$('number').textContent=`Game ${meta.number} · Eight little journeys`;
     if(location.protocol==='file:')$('shelfLink').href='../../ummahgames.github.io/index.html';
     const procedural=window.MiniProcedural?.mount(E,slug,state=>begin(state.level,{state,actions:[]}));
+    const quickMenu=window.MiniPresentation?.menu(E,meta,{start:begin,fresh:state=>begin(state.level,{state}),current:()=>state,resume:render});
     const restored=E.restore(slug,new URLSearchParams(location.hash.slice(1)).get('save'));if(restored){mask=restored.mask;begin(restored.level,restored);}else levels();
   }
   root.MiniExpansionUI={mount,info,stageNames};

@@ -105,8 +105,19 @@
     s.path=[14,15,16,17,18,19,20];s.solution=[{type:'build',pos:9,kind:'snack'},{type:'build',pos:10,kind:'bell'},{type:'build',pos:11,kind:'snack'},{type:'build',pos:23,kind:'bell'},{type:'build',pos:25,kind:'bell'}];s.solution=buildRoute(s);return s;
   };
   (typeof module!=='undefined'?require('./specialized-procedural.js'):specialized)(E,generators);
-  E.procedural={version:1,supported:Object.keys(generators),canonical,nextNumber,valid:descriptor=>!!descriptor&&Object.keys(descriptor).length===3&&descriptor.version===1&&typeof descriptor.number==='string'&&/^[1-9]\d{0,59}$/.test(descriptor.number)&&Number.isInteger(descriptor.difficulty)&&descriptor.difficulty>=0&&descriptor.difficulty<=7};
-  E.generate=function(slug,number,difficulty=3){
+  E.procedural={version:1,supported:Object.keys(generators).filter(slug=>!['sandcastle-helpers','button-burrows','museum-of-impossible-rooms'].includes(slug)),canonical,nextNumber,valid:descriptor=>!!descriptor&&Object.keys(descriptor).length===3&&[1,2].includes(descriptor.version)&&typeof descriptor.number==='string'&&/^[1-9]\d{0,59}$/.test(descriptor.number)&&Number.isInteger(descriptor.difficulty)&&descriptor.difficulty>=0&&descriptor.difficulty<=7};
+  const carpetChallenge=(typeof module!=='undefined'?require('./carpet-challenges.js'):window.MiniCarpetChallenges);
+  E.generate=function(slug,number,difficulty=3,version=1){
+    if(version===2&&slug==='carpet-unroll')return carpetChallenge.generate(E,number,difficulty);
+    if(version===2&&slug==='picnic-pairs'){
+      const s=E.generate(slug,number,difficulty,1);
+      if(difficulty<2){const c=context(slug,canonical(number),difficulty),faces=c.shuffle([['🍎','apples'],['🧤','mittens'],['🌻','flowers'],['☕','cups'],['🐝','bees'],['🐑','sheep'],['🥕','carrots'],['🐇','rabbits']]).slice(0,3);
+        s.cards=c.shuffle(faces.flatMap(([face,name],id)=>R(2).map(()=>({face,id,clue:'two '+name}))));s.solution=faces.flatMap((_,id)=>s.cards.flatMap((card,index)=>card.id===id?[{type:'cell',index}]:[]));
+      }
+      s._generated.version=2;return s;
+    }
+
+    if(version!==1)throw Error('Unsupported puzzle edition.');
     if(!generators[slug])throw Error('Unknown game for generated levels.');number=canonical(number);if(!Number.isInteger(difficulty)||difficulty<0||difficulty>7)throw Error('Choose a supported difficulty.');const c=context(slug,number,difficulty);
     for(let attempt=0;attempt<16;attempt++){
       const s=generators[slug](E.create(slug,difficulty),c);s.moves=0;s.won=false;s.message='';

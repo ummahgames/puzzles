@@ -9,6 +9,7 @@
   function previewClear(){document.querySelectorAll('.preview-good,.preview-bad,.range-preview').forEach(e=>e.classList.remove('preview-good','preview-bad','range-preview'));}
   function sync(E,slug,s,perform){
     const board=$('board'),tools=$('tools'),readout=$('readout');
+    window.MiniPresentation?.decorate(E,slug,s,perform);
     $('readInstruction').onclick=()=>{
       const synthesis=window.speechSynthesis,voice=synthesis?.getVoices().find(v=>v.localService&&v.lang.startsWith('en'));
       if(!voice){$('status').textContent='No local reading voice is available. The pictures and written instructions are still here.';return;}
@@ -46,7 +47,7 @@
           if(s.pieces&&s.selected>=0){const rotate=E.engines[slug].rotate||E.engines[slug].rotated,shape=rotate(s.pieces[s.selected],s.rotation);positions=shape.map(([x,y])=>({x:index%w+x,y:Math.floor(index/w)+y}));valid=positions.every(p=>p.x<w&&p.y<s.h&&s.target.includes(p.y*w+p.x)&&!s.placed.some(v=>v.cells.includes(p.y*w+p.x)));positions=positions.map(p=>p.y*w+p.x);}
           if(slug==='orchard-guardians'){const range=s.selected==='bell'?2:1;positions=E.range(w*s.h).filter(i=>Math.abs(i%w-index%w)+Math.abs(Math.floor(i/w)-Math.floor(index/w))<=range);valid=!s.path.includes(index)&&!s.running;}
           if(slug==='carpet-unroll'){
-            const r=s.rugs.find(v=>v.pos===index);if(r&&s.cover[index]===undefined){positions=[index];let p=index;for(let step=0;step<r.max;step++){const [dx,dy]=E.directions[r.dir],x=p%w+dx,y=Math.floor(p/w)+dy,n=y*w+x;if(x<0||x>=w||y<0||y>=s.h||s.cover[n]!==undefined||s.rugs.some(v=>v!==r&&v.pos===n))break;positions.push(n);p=n;}}
+            const r=s.rugs.find(v=>v.pos===index);if(r&&s.cover[index]===undefined){positions=[index];let p=index;for(let step=0;step<r.max;step++){const [dx,dy]=E.directions[r.dir],x=p%w+dx,y=Math.floor(p/w)+dy,n=y*w+x;if(x<0||x>=w||y<0||y>=s.h||(s._generated?.version===2&&s.blocked.includes(n))||s.cover[n]!==undefined||s.rugs.some(v=>v!==r&&v.pos===n))break;positions.push(n);p=n;}}
           }
           if(slug==='gravity-suitcase'){const temp=E.act(slug,s,{type:'cell',index}),item=temp.items[temp.selected];if(item.pos!==null)positions=E.range(item.width).map(dx=>item.pos+dx);}
           positions.forEach(p=>cells[p]?.classList.add(valid?'preview-good':'preview-bad'));
@@ -58,7 +59,7 @@
     tools.querySelectorAll('.direction').forEach(b=>{const d=['↑','→','↓','←'].indexOf(b.textContent);b.setAttribute('aria-label',['Move up','Move right','Move down','Move left'][d]||b.textContent);if(d>=0&&!s.won)b.disabled=E.act(slug,s,{type:'move',dir:d}).moves===s.moves;});
     if(slug==='mosaic-courtyard'){
       board.querySelectorAll('.mosaic-row').forEach((row,y)=>row.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-label',`Slide row ${y+1} ${i===0?'left':'right'}`)));
-      board.querySelectorAll('.column-tools>div').forEach((col,x)=>col.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-label',`Slide column ${x+1} ${i===0?'up':'down'}`)));
+      board.querySelectorAll('.column-tools>div').forEach((col,x)=>col.querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-label',`Slide column ${x%s.w+1} ${col.parentElement?.classList.contains('column-down')?'down':'up'}`)));
     }
     if(s._rules===1){const p=document.createElement('p');p.className='control-hint';p.textContent='An earlier-edition save is restored with its original rules. Finish this level or restart to use the current edition.';readout.append(p);}
 
@@ -112,5 +113,6 @@
   }
   function melody(notes){try{audio||=new(window.AudioContext||window.webkitAudioContext)();audio.resume();notes.slice(0,15).forEach((n,i)=>{const o=audio.createOscillator(),g=audio.createGain(),t=audio.currentTime+i*.18;o.frequency.value=[523,659,784][n%3];g.gain.setValueAtTime(.001,t);g.gain.exponentialRampToValueAtTime(.07,t+.01);g.gain.exponentialRampToValueAtTime(.001,t+.16);o.connect(g).connect(audio.destination);o.start(t);o.stop(t+.18);});}catch(_){$('status').textContent='Sound is unavailable. The note symbols show the same sequence.';}}
   function result(slug,s){const icon=$('result').querySelector('.result-icon');icon.replaceChildren();icon.textContent=slug==='match-to-mend'?s.object:slug==='pocket-conservatory'?'🦋 🌷':slug==='storybook-stagehands'?'🎭':slug==='stardust-sanctuary'?'🌙 🧚':'✦';if(slug==='storybook-stagehands'){const stage=document.createElement('div');stage.className='stage-performance';s.scene.cues.forEach((cue,i)=>{const span=document.createElement('span');span.textContent={fan:'🌬',drum:'🥁',cloth:'🌊',lamp:'💡',cutout:'🌙',flags:'⚑',stars:'✦'}[cue];span.style.setProperty('--cue',i);stage.append(span);});icon.append(stage);}}
-  root.MiniPlay={sync,foldControls,result,interacting:()=>held};
+  const originalResult=result;
+  root.MiniPlay={sync,foldControls,result:(slug,s)=>{originalResult(slug,s);window.MiniPresentation?.result(slug,s);},interacting:()=>held};
 }(window));

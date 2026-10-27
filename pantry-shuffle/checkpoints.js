@@ -112,7 +112,7 @@
   function template(rules,slug,level,generated){
     const key=rules+':'+slug+':'+level+(generated?':'+generated.version+':'+generated.number+':'+generated.difficulty:'');
     if(!templates.has(key)){
-      const value=generated?E.generate(slug,generated.number,generated.difficulty):(rules===1?legacy:E).create(slug,level);
+      const value=generated?E.generate(slug,generated.number,generated.difficulty,generated.version):(rules===1?legacy:E).create(slug,level);
       if(templates.size>=64)templates.delete(templates.keys().next().value);
       templates.set(key,value);
     }
