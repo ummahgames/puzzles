@@ -12,7 +12,7 @@
   function commitStroke(){if(!dragging)return;dragging=false;if(pointerId!==null&&$('garden').hasPointerCapture(pointerId))$('garden').releasePointerCapture(pointerId);pointerId=null;lastPoint=null;if(strokeBefore!==null)remember(strokeBefore);strokeBefore=null;}
   let strokeBefore=null;
   function syncPrefs(){for(const key of ['difficulty','size','pairs'])$(key).value=String(prefs[key]);preview();}
-  function preview(){const s=C.settings(prefs);$('preview').textContent=`Evening ${prefs.level} · ${s.size} × ${s.size} tiles · ${s.pairs} pairs${prefs.size===0?' · Grows every four evenings':''}`;}
+  function preview(){const s=C.settings(prefs);$('preview').textContent=`Evening ${prefs.level} · ${s.size} × ${s.size} tiles · ${s.pairs} ${s.pairs===1?'pair':'pairs'}${prefs.size===0?` · ${prefs.difficulty==='easy'?'Stays small and gentle':'Grows every four evenings'}`:''}`;}
   function persist(){try{window.history.replaceState(null,'',location.pathname+location.search+'#garden='+C.encode(prefs));}catch(_){}}
   function setFocus(i,focus=true){buttons[focusIndex]?.setAttribute('tabindex','-1');focusIndex=i;buttons[i].tabIndex=0;if(focus)buttons[i].focus({preventScroll:true});}
   function status(text){$('status').textContent=text;}
@@ -20,7 +20,7 @@
   function svg(tag,attrs){const el=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))el.setAttribute(k,v);return el;}
   const points=p=>p.map(i=>`${i%board.size+.5},${Math.floor(i/board.size)+.5}`).join(' ');
   function build(){
-    const n=board.size;$('garden').style.setProperty('--n',n);$('routes').setAttribute('viewBox',`0 0 ${n} ${n}`);$('routes').replaceChildren();$('cells').replaceChildren();$('legend').replaceChildren();buttons=[];routeNodes=[];legendButtons=[];hintNodes=[];
+    const n=board.size;$('garden').style.setProperty('--n',n);$('routes').setAttribute('viewBox',`0 0 ${n} ${n}`);$('routes').setAttribute('preserveAspectRatio','none');$('routes').replaceChildren();$('cells').replaceChildren();$('legend').replaceChildren();buttons=[];routeNodes=[];legendButtons=[];hintNodes=[];
     for(let k=0;k<board.pairs.length;k++){
       const g=svg('g',{'stroke':colors[k],fill:'none','stroke-linejoin':'miter','stroke-linecap':'square'}),shadow=svg('polyline',{'stroke':'#050e1e','stroke-width':'.43'}),line=svg('polyline',{'stroke-width':'.28',class:'ribbon'}),spark=svg('polyline',{'stroke-width':'.055',stroke:'#fff7da',class:'spark','stroke-dasharray':'.07 .6'});g.append(shadow,line,spark);$('routes').append(g);routeNodes.push({g,shadow,line,spark});
       const b=document.createElement('button');b.className='pair';b.style.setProperty('--pair',colors[k]);b.innerHTML=lantern(colors[k])+`<span>${String(k+1).padStart(2,'0')} <strong>${names[k]}</strong></span><span class="pair-check" aria-hidden="true">○</span>`;b.onclick=()=>{finishKeyboard();const before=snapshot();C.begin(board,state,board.pairs[k][0]);remember(before);setFocus(board.pairs[k][0]);paint();status(`Drawing ${names[k]} ${k+1}. Use arrows or tap neighboring tiles.`);keyboardDrawing=true;keyboardSnapshot=snapshot();};$('legend').append(b);legendButtons.push(b);
@@ -30,7 +30,7 @@
       b.addEventListener('click',e=>{if(e.detail===0){activate(i);}});$('cells').append(b);buttons.push(b);
     }
     for(const p of board.solution){const k=hintNodes.length,h=svg('polyline',{points:points(p),stroke:colors[k],'stroke-width':'.09',fill:'none','stroke-dasharray':'.15 .16',class:'hint-route',hidden:'true'});$('routes').append(h);hintNodes.push(h);}
-    setFocus(board.pairs[0][0],false);$('chapter').textContent=`Evening ${prefs.level} / ${prefs.difficulty}`;$('playTitle').textContent=['The firefly garden','Moonlit stepping stones','The starling orchard','The midnight courtyard'][(prefs.level-1)%4];$('pairCount').textContent=`${board.pairs.length} pairs to bring home`;
+    setFocus(board.pairs[0][0],false);$('chapter').textContent=`Evening ${prefs.level} / ${C.presets[prefs.difficulty].label}`;$('playTitle').textContent=['The firefly garden','Moonlit stepping stones','The starling orchard','The midnight courtyard'][(prefs.level-1)%4];$('pairCount').textContent=`${board.pairs.length} ${board.pairs.length===1?'pair':'pairs'} to bring home`;
     $('garden').classList.remove('garden-arrive');void $('garden').offsetWidth;$('garden').classList.add('garden-arrive');
   }
   function paint(){
@@ -41,7 +41,7 @@
     $('garden').classList.toggle('garden-won',p.won);$('fresh').textContent=p.won?'Next evening →':'New layout ↻';
     if(p.connected>connectedBefore){tone(p.won);if(!p.won)status(`${p.connected} pair${p.connected===1?'':'s'} glowing. ${board.size**2-p.filled} tiles left to fill.`);}connectedBefore=p.connected;
     if(p.connected===board.pairs.length&&!p.won)status(`Every pair is linked. Fill the ${board.size**2-p.filled} remaining tiles to light the whole garden.`);
-    if(p.won&&!completionTimer&&!$('result').open){hideHint();commitStroke();finishKeyboard();status('Every lantern is linked. Every tile is glowing!');completionTimer=setTimeout(function offer(){completionTimer=null;if($('play').hidden||!C.progress(board,state).won)return;if(document.querySelector('dialog[open]')){completionTimer=setTimeout(offer,250);return;}$('resultText').textContent=`Evening ${prefs.level}: ${board.size} × ${board.size}, ${board.pairs.length} pairs, one bright garden. A freshly generated evening is waiting whenever you are.`;$('result').showModal();},document.body.classList.contains('quiet')?30:850);}
+    if(p.won&&!completionTimer&&!$('result').open){hideHint();commitStroke();finishKeyboard();status('Every lantern is linked. Every tile is glowing!');completionTimer=setTimeout(function offer(){completionTimer=null;if($('play').hidden||!C.progress(board,state).won)return;if(document.querySelector('dialog[open]')){completionTimer=setTimeout(offer,250);return;}$('resultText').textContent=`Evening ${prefs.level}: ${board.size} × ${board.size}, ${board.pairs.length} ${board.pairs.length===1?'pair':'pairs'}, one bright garden. A freshly generated evening is waiting whenever you are.`;$('result').showModal();},document.body.classList.contains('quiet')?30:850);}
   }
   function hideHint(){clearTimeout(hintTimer);showHint=false;for(const node of hintNodes)node.style.display='none';$('hint').textContent='Peek at a solution';}
   function start(){commitStroke();finishKeyboard();clearTimeout(completionTimer);completionTimer=null;hideHint();board=C.generate(prefs,freshSeed());state=C.create(board);history=[];connectedBefore=0;$('result').close();$('home').hidden=true;$('play').hidden=false;$('resume').hidden=false;build();paint();status('Drag from either lantern to its twin. Fill every tile.');persist();$('playTitle').focus({preventScroll:true});window.scrollTo(0,0);}
@@ -69,7 +69,7 @@
   $('help').onclick=()=>{commitStroke();finishKeyboard();$('helpDialog').showModal();};
   $('save').onclick=()=>{commitStroke();finishKeyboard();$('saveInput').value=C.encode(prefs);$('saveStatus').textContent='';$('saveDialog').showModal();};
   $('copy').onclick=async()=>{try{await navigator.clipboard.writeText($('saveInput').value);$('saveStatus').textContent='Garden code copied.';}catch(_){$('saveInput').select();$('saveStatus').textContent='Select and copy the code to keep it.';}};
-  $('load').onclick=()=>{const restored=C.decode($('saveInput').value.trim());if(!restored){$('saveStatus').textContent='Use a Lantern Links code beginning LL2. Older campaign codes use the previous game rules.';return;}prefs=restored;syncPrefs();$('saveDialog').close();start();};
+  $('load').onclick=()=>{const restored=C.decode($('saveInput').value.trim());if(!restored){$('saveStatus').textContent='Use a Lantern Links code beginning LL3 (or an older LL2 code). Older campaign codes use the previous game rules.';return;}prefs=restored;syncPrefs();$('saveDialog').close();start();};
   for(const b of document.querySelectorAll('[data-close]'))b.onclick=()=>$(b.dataset.close).close();
   $('sound').onclick=()=>{sound=!sound;$('sound').textContent=sound?'Sound on':'Sound off';$('sound').setAttribute('aria-pressed',String(sound));if(sound)tone();};
   $('reduceMotion').checked=matchMedia('(prefers-reduced-motion: reduce)').matches;$('reduceMotion').onchange=()=>document.body.classList.toggle('quiet',$('reduceMotion').checked);$('reduceMotion').onchange();
