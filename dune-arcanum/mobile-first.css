@@ -1,0 +1,40 @@
+/* Phone layouts keep the game and its primary action close at hand. */
+@media (max-width: 700px) {
+  html { -webkit-text-size-adjust: 100%; overscroll-behavior: none; }
+  body { overscroll-behavior: none; }
+  button, select, input { touch-action: manipulation; }
+  canvas { touch-action: none; }
+  dialog { max-height: calc(100dvh - 24px); overflow: auto; }
+  body[data-game="patchwork-parade"] .shell,
+  body[data-game="puddle-engineers"] .shell,
+  body[data-game="picnic-pairs"] .shell,
+  body[data-game="mosaic-courtyard"] .shell,
+  body[data-game="pantry-shuffle"] .shell { width: 100%; padding: 0 max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)); }
+  body[data-game] .shell > header { min-height: 52px; }
+  body[data-game] .shell > .footnote, body[data-game] .shell > footer { display: none; }
+  body[data-game]:not([data-game="lantern-links"]) .game-menu { min-height: 0; gap: 12px; padding: 12px 0; }
+  body[data-game]:not([data-game="lantern-links"]) .menu-art { display: none; }
+  body[data-game]:not([data-game="lantern-links"]) .menu-copy { padding: 12px; }
+  body[data-game]:not([data-game="lantern-links"]) .menu-copy h1 { font-size: clamp(28px, 8vw, 40px); }
+  body[data-game]:not([data-game="lantern-links"]) .play-top { padding: 6px 0; gap: 8px; }
+  body[data-game]:not([data-game="lantern-links"]) .scene-caption { min-height: 0; padding: 8px; }
+  body[data-game]:not([data-game="lantern-links"]) .sidebar { position: static; padding: 6px; }
+  body[data-game="lantern-links"] .shell { width: 100%; padding-inline: max(8px, env(safe-area-inset-left)) max(8px, env(safe-area-inset-right)); }
+  body[data-game="lantern-links"] #menuArt { display: none; }
+  body[data-game="lantern-links"] .menu { min-height: 0; padding-block: 12px; }
+  body[data-ug-game="find-the-animal"] .hero-art,
+  body[data-ug-game="photon"] .orbit-art { display: none; }
+  body[data-ug-game="find-the-animal"] .hero-card,
+  body[data-ug-game="photon"] .home-layout { min-height: 0; }
+  body[data-ug-game="swipe"] #gameCanvas,
+  body[data-ug-game="pearls"] #game { touch-action: none; user-select: none; }
+}
+
+@media (max-width: 640px) {
+  body.playing .site-header { display: none; }
+  body.playing .play-view { padding: max(6px, env(safe-area-inset-top)) max(8px, env(safe-area-inset-right)) max(8px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)); }
+  body.playing .board-column { max-width: min(430px, calc((100dvh - 180px - env(safe-area-inset-top) - env(safe-area-inset-bottom)) * .6667)); }
+  .chamber-top .icon-button { width: 44px; height: 44px; }
+  .home-hero { padding-block: 16px; }
+  .hero-art { display: none; }
+}

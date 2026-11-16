@@ -83,7 +83,7 @@
     $('homeProgress').textContent = completed ? completed + ' / 24 stages · ' + store.profile.stars.reduce((a, b) => a + b, 0) + ' mastery stars' : '24 stages · 4 chapters · all on your device';
     if (!store.available) $('homeProgress').textContent += ' · session-only saves';
     $('continueBtn').hidden = !store.profile.checkpoint;
-    $('campaignBtn').classList.toggle('primary', !store.profile.checkpoint);
+    $('quickPlayBtn').hidden = !!store.profile.checkpoint;
   }
   function renderMap() {
     const stars = store.profile.stars;
@@ -123,7 +123,7 @@
   function start(options) {
     closeModal(); engine = new Engine(options); paused = false; speed = 1; resultSaved = false; logs = []; lastHUD = ''; renderer.clear();
     undoCheckpoint = null; screen('play'); setupStage(); processEvents(); updateHUD(); checkpoint();
-    if (engine.mode === 'campaign') briefing(); else toast(engine.mode === 'daily' ? 'Same UTC-day seed for everyone. Your scores stay local.' : 'Two wall banks can open a whole new route.', 3500);
+    if (engine.mode === 'campaign' && !options.quickPlay) briefing(); else toast(engine.mode === 'campaign' ? 'Drag and release to aim. Clear the crystals.' : engine.mode === 'daily' ? 'Same UTC-day seed for everyone. Your scores stay local.' : 'Two wall banks can open a whole new route.', 3500);
   }
   function continueRun() {
     try {
@@ -266,6 +266,7 @@
     }
   }
 
+  $('quickPlayBtn').addEventListener('click', () => requestStart({ mode: 'campaign', stageId: 0, quickPlay: true }));
   $('campaignBtn').addEventListener('click', () => screen('campaign'));
   $('continueBtn').addEventListener('click', continueRun);
   $('survivalBtn').addEventListener('click', survivalPrompt);

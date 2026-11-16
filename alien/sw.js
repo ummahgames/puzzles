@@ -1,8 +1,9 @@
-const CACHE = "alien-agency-v5";
+const CACHE = "alien-agency-v6";
 const SHELL = [
   "./",
   "index.html",
   "styles.css",
+  "mobile-first.css?v=1",
   "screen.css?v=4",
   "screen.js?v=4",
   "portable-profile.js",

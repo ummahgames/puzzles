@@ -7,6 +7,11 @@ const Storage = require('../storage.js');
 const solutions = require('./campaign-solutions.json');
 function stageOne(app) { app.click('campaignBtn'); app.stage(0); app.action('resume'); }
 
+test('quick play opens the first stage ready to aim and preserves its checkpoint', () => {
+  const app = boot(); app.click('quickPlayBtn');
+  assert.equal(app.nodes.get('play').hidden, false); assert.equal(app.nodes.get('modal').open, false);
+  assert.equal(app.profile().checkpoint.stageId, 0); assert.equal(app.nodes.get('fireBtn').disabled, false);
+});
 test('static scripts boot, campaign renders 24 cards, and stage briefing can begin', () => {
   const app = boot(); app.click('campaignBtn'); assert.match(app.nodes.get('chapterList').innerHTML, /data-stage="23"/);
   app.stage(0); assert.equal(app.nodes.get('modal').open, true); assert.equal(app.nodes.get('play').hidden, false);

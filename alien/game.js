@@ -131,7 +131,7 @@ function home() {
  <section class="extra-expeditions"><button class="expedition-card" id="dailyButton"><span class="eyebrow">ONE SHARED SKY</span><strong>Today’s little rescue <span>↗</span></strong><span>${dailyRecord ? `Today’s best: ${dailyRecord.best} actions · ${starsText(dailyRecord.stars)}` : "A fresh, date-seeded puzzle. The same sky for everyone."}</span></button><button class="expedition-card" id="freeButton"><span class="eyebrow">TAKE THE SCENIC ROUTE</span><strong>Free expedition <span>↗</span></strong><span>Pick a planet. Try a signal. Follow your curiosity.</span></button></section>
  <footer><span>Made for curious humans of all ages.</span><span>Client-side · Offline friendly · No account</span></footer>`;
   $("launchButton").onclick = () =>
-    data.resume ? resume() : briefing(next.index);
+    data.resume ? resume() : start(next);
   $("browseButton").onclick = () => atlas();
   $("dailyButton").onclick = () => daily();
   $("freeButton").onclick = () => freeDialog();
