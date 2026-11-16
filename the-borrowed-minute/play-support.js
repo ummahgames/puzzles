@@ -33,7 +33,7 @@
       if(s.clouds&&(entity=s.clouds.find(v=>v.pos===index)))description=`Cloud with ${entity.mass} puffs`;
       if(s.targets&&(entity=s.targets.find(v=>v.pos===index)))description+=`, target: ${entity.mass} puffs`;
       if(slug==='button-burrows')description='Tunnel openings '+s.tiles[index].map(d=>['up','right','down','left'][d]).join(' and ')+(s.start===index?', entrance':'')+(s.end===index?', home':'');
-      if(s.ports)description='Gutter opening '+s.ports[index].map(d=>['up','right','down','left'][d]).join(' and ')+(s.source===index?', rain source':'')+(s.pots.includes(index)?', thirsty flower':'');
+      if(s.ports&&s.edition!==2)description='Gutter opening '+s.ports[index].map(d=>['up','right','down','left'][d]).join(' and ')+(s.source===index?', rain source':'')+(s.pots.includes(index)?', thirsty flower':'');
       if(slug==='museum-of-impossible-rooms')description='Room doors '+s.tiles[index].map(d=>['up','right','down','left'][d]).join(' and ')+(s.exhibits.includes(index)?', exhibit':'')+(index===s.mirror?', turns counterclockwise':'');
       if(slug==='cloud-habitat')description='Current flows '+['up','right','down','left'][s.arrows[index]];
       const objectives=s.flags||s.sun;

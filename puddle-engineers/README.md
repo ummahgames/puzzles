@@ -23,3 +23,15 @@ The Save code button exports a versioned code containing completed levels, curre
 ## Development
 
 Canonical source lives in ../../game-kit/. Run node game-kit/build.cjs from the workspace root after changing it. This copies the browser files into each independent game folder. Run node game-kit/test.cjs for all game suites, including all 360 toolkit level solutions.
+
+## Rainworks progression (edition 2)
+
+New games start at numbered level 1. Easy begins on a 3×3 square board; successive stages gradually add flowers and increase board dimensions up to 7×7, with rectangular variants. Medium introduces branching pipes. Easy and medium keep the rain inlet and all drain tiles fixed. Hard offers several marked boundary drains and introduces hexagons after its first three square stages. Expert uses hexagons immediately, with 60° rotations and reciprocal six-direction connections.
+
+Every new garden is constructed as a connected network from the rain inlet to boundary drains. Branches also lead to drains. The generator records the solved orientations, scrambles only movable tiles, and replays its reference solution against the actual win rules before returning the board. Failed checks retry generation. All flowers must receive water, at least one drain must be used, and every wet opening must meet a matching pipe or an explicitly marked boundary drain. Dry spare pipes do not count as leaks.
+
+Later hard/expert levels alternate ordinary routing, short routes (at most the displayed number of wet tiles), and long routes (at least the displayed number). These are achievable tile-count targets backed by the reference solution, not certified global shortest/longest paths.
+
+A completion earns 100 points plus 50 per flower, 25 per collected coin, and 100 per optional gem. Water must reach a treasure's tile to collect it. Coins and gems are never required to win. Totals carry through Next, Restart, menu selections, and portable saves. The save retains the best score for each of the most recent 100 gardens, so immediate replays cannot repeatedly award the same points; accumulated totals remain after older entries leave that history. Undo restores the prior score state.
+
+Old campaign and generated edition-1 saves retain their original boards and rules. The new generation is edition 2 so older numbered gardens remain reproducible. Canonical implementation: `game-kit/puddle-challenges.js`, `game-kit/puddle-ui.js`, and `game-kit/puddle.css`. Run `node --test game-kit/tests/puddle-challenges.test.cjs game-kit/tests/runtime.test.cjs` from the repository root for the targeted checks.

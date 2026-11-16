@@ -18,7 +18,7 @@
   const common={moves:number,won:bool,message:text};
   const fields={
     'patchwork-parade':{placed:list(record({piece:cell,cells}),10),selected:cell,rotation:dir},
-    'puddle-engineers':{ports:list(dirs,100,1),water:cells},
+    'puddle-engineers':{ports:list(list(v=>int(v,0,5),6,1),100,1),water:cells,score:number,totalScore:number,rewards:list(record({key:v=>typeof v==='string'&&/^[1-9]\d{0,59}:[0-7]$/.test(v),points:number}),100)},
     'who-made-that-sound':{round:cell,visual:bool,heard:bool},
     'sandcastle-helpers':{placed:list(record({piece:cell,cells}),10),selected:signed,rotation:dir},
     'picnic-pairs':{open:cells,matched:cells,mismatch:bool},
@@ -96,6 +96,12 @@
     if(typeof s.selected==='number'&&selectedSize&&(s.selected<0?slug!=='sandcastle-helpers'||!s.won:s.selected>=selectedSize))return false;
     if(s.tiles&&s.w&&s.h&&s.tiles.length!==size)return false;
     if(s.ports&&s.ports.length!==size)return false;
+    if(slug==='puddle-engineers'&&s.edition===2){
+      const count=E.puddle.vectors(s).length;
+      if(s.ports.some((p,i)=>p.some(d=>d>=count)||new Set(p).size!==p.length||p.length!==s.correct[i].length||!E.range(count).some(t=>same(p,s.correct[i].map(d=>(d+t)%count)))))return false;
+      if(s.fixed.some(i=>!same(s.ports[i],s.correct[i])))return false;
+      if(s.won){const proof=E.clone(s);proof.won=false;E.engines[slug].act(proof,{type:'run'});if(!proof.won||proof.score!==s.score)return false;}
+    }
     if(s.paths&&s.pairs&&s.paths.length!==s.pairs.length)return false;
     if(s.round!==undefined&&slug==='who-made-that-sound'&&s.round>s.sequence.length)return false;
     if(Number.isInteger(s.guest)&&s.guest>s.guests.length)return false;

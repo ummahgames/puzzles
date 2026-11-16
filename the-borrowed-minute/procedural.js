@@ -107,7 +107,9 @@
   (typeof module!=='undefined'?require('./specialized-procedural.js'):specialized)(E,generators);
   E.procedural={version:1,supported:Object.keys(generators).filter(slug=>!['sandcastle-helpers','button-burrows','museum-of-impossible-rooms','who-made-that-sound'].includes(slug)),canonical,nextNumber,valid:descriptor=>!!descriptor&&Object.keys(descriptor).length===3&&[1,2].includes(descriptor.version)&&typeof descriptor.number==='string'&&/^[1-9]\d{0,59}$/.test(descriptor.number)&&Number.isInteger(descriptor.difficulty)&&descriptor.difficulty>=0&&descriptor.difficulty<=7};
   const carpetChallenge=(typeof module!=='undefined'?require('./carpet-challenges.js'):window.MiniCarpetChallenges);
+  const puddleChallenge=(typeof module!=='undefined'?require('./puddle-challenges.js'):window.MiniPuddleChallenges)(E);
   E.generate=function(slug,number,difficulty=3,version=1){
+    if(version===2&&slug==='puddle-engineers')return puddleChallenge.generate(number,difficulty);
     if(version===2&&slug==='carpet-unroll')return carpetChallenge.generate(E,number,difficulty);
     if(version===2&&slug==='picnic-pairs'){
       const s=E.generate(slug,number,difficulty,1);
