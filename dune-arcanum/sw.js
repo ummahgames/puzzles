@@ -1,5 +1,5 @@
-const CACHE = 'dune-arcanum-static-v2-7';
-const FILES = ['./', './index.html', './style.css?v=screen-1', './mobile-first.css?v=1', './screen.css?v=4', './screen.js?v=4', './portable-profile.js', './main.js', './src/physics.js', './src/engine.js', './src/levels.js', './src/storage.js', './src/audio.js', './src/renderer.js', './assets/sand-gate.svg', './assets/lapis-court.svg', './assets/glass-observatory.svg', './assets/atlas-vault.svg', './assets/mosaic.svg', './assets/orb.svg'];
+const CACHE = 'dune-arcanum-static-v2-8';
+const FILES = ['./', './index.html', './style.css?v=screen-1', './mobile-first.css?v=2', './screen.css?v=4', './screen.js?v=4', './portable-profile.js', './main.js', './src/physics.js', './src/engine.js', './src/levels.js', './src/storage.js', './src/audio.js', './src/renderer.js', './assets/sand-gate.svg', './assets/lapis-court.svg', './assets/glass-observatory.svg', './assets/atlas-vault.svg', './assets/mosaic.svg', './assets/orb.svg'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(FILES))); });
 // New code waits until old game tabs close; never switch versions during a shot.
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('dune-arcanum-static-') && key !== CACHE).map(key => caches.delete(key))))); });

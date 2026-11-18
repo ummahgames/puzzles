@@ -38,3 +38,13 @@
   .hero-space, .hero-facts { display: none; }
   .hero-actions { margin-top: 14px; }
 }
+
+/* Edge-to-edge game presentation, on phones and larger screens. */
+
+body[data-ug-game] #app { max-width:none; width:100%; padding:0 max(8px,env(safe-area-inset-right)) 0 max(8px,env(safe-area-inset-left)); }
+body[data-ug-game] .hero-space, body[data-ug-game] .hero-facts { display:none; }
+body[data-ug-game] .home-hero { display:flex; justify-content:center; min-height:calc(100dvh - 78px); }
+body[data-ug-game] .board-column { border:0; border-radius:0; box-shadow:none; }
+body[data-ug-game] .board-field { border:0; border-radius:0; box-shadow:none; }
+body[data-ug-game]:has(#gameCanvas) .site-header { display:none; }
+body[data-ug-game] .play-heading { padding-block:8px; }

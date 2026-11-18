@@ -1,25 +1,11 @@
-# Bookworm Caravan
+# Libraries of Light — Bookworm Caravan
 
-Trace neighboring letters to deliver words to the traveling library.
+A complete standalone word-survival game at the existing Bookworm Caravan address. Ten destinations: Baghdad, Fez, Cairo, Córdoba, Timbuktu, Chinguetti, Bukhara, Istanbul, Alexandria and Nalanda. Each has four campaign collections; all libraries are available immediately. Endless and Quiet Study modes, three challenge settings, hints, assisted rearrangement, optional synthesized sound, portable saves, touch/drag/tap/keyboard input, and shared fullscreen controls.
 
-A direct Start / How to play / Settings menu, optional difficulty, and fresh puzzles. Eight optional campaign puzzles plus repeatable generated play, undo for the 100 most recent gameplay steps, gentle retries, and portable progress codes. Open index.html directly, or host this folder unchanged on any static host. No install, build step, dependencies, tracking, accounts, or backend is required for players. All runtime assets are local.
+Open index.html directly or host this directory unchanged. No installation, external requests, accounts, storage, or backend. Copy a save code before closing; the address fragment also contains your checkpoint. This independent edition uses LL1 codes; UG codes from the earlier mini-game are not supported. The old toolkit engine and its save handling remain in the repository for compatibility with previous distributions.
 
-## Generated play
+Trace at least three adjacent tiles on the staggered six-neighbor board. Submit dictionary words, clear embers, and complete commissions. Invalid submissions cost no turn. Reward tiles increase points. Embers fall with gravity and burn downward each valid turn; a bottom ember must be cleared on your next turn. A fresh hazard is spawned only on a tile with a familiar-word route. This is a local fairness check, not a guarantee against every subsequent player choice. Rearrangement extinguishes hazards and marks assistance; hints also mark assistance. Assistance never prevents campaign completion.
 
-Open Generated levels on the level menu, choose a positive level number and a challenge setting, then play one finite stage. Another level starts the next number only when you choose it. The same number and challenge reproduce the same board. Restart replays it; save codes preserve partial progress and the number, without changing campaign completion. Level numbers support up to 60 decimal digits. See [generated-level coverage](../../PROCEDURAL_LEVELS.md) for coverage and save-version details.
+The dictionary contains 210,625 historical Webster word-list entries plus curated vocabulary. See DICTIONARY.txt for provenance. It includes archaic/technical words and is not a modern pedagogical dictionary. Generation uses a separately curated familiar list. A prefix trie finds common-word paths with bounded searches. Openings plant common words; refills sample and score candidates. The bounded search cannot establish that every board has an optimal survival strategy. Difficulty affects hazard frequency and count. Content and artwork are educational interpretations; source links and qualifications appear in every room. No additional cultures beyond the requested Muslim-world libraries, Alexandria and Nalanda appear.
 
-## Rules and controls
-
-Tap or click the labeled board and action controls. Tab and Enter/Space work throughout. Movement games display arrow controls; consult Help for keyboard shortcuts.
-
-## Display and devices
-
-Use the full-screen icon in the header to enter or exit fullscreen. A separate exit stays visible during fullscreen play. Browsers that do not allow native fullscreen use an expanded page view while keeping their browser bars. Desktop, tablet, and phone layouts support mouse, touch, and keyboard controls; rotate the device as you prefer.
-
-## Saving
-
-The Save code button exports a versioned code containing completed levels, current level, and a bounded state checkpoint. The URL hash updates after actions. Paste a code into the same game to resume. No local storage is used. Codes are checksummed and validated against per-game state schemas. Older replay codes continue using their original rules.
-
-## Development
-
-Canonical source lives in ../../game-kit/. Run node game-kit/build.cjs from the workspace root after changing it. This copies the browser files into each independent game folder. Run node game-kit/test.cjs for all game suites, including all 360 toolkit level solutions.
+Canonical source: game-kit/library-game/. Build integration copies these files after the toolkit defaults, so future builds preserve the new game. Run node game-kit/library-game/test.cjs or the workspace test command. Tests cover graph symmetry, seeds, dictionary lookup, gravity, hazards, generation, rewards, campaign victory, saves and invalid data. Gameplay feel and physical device rendering require human feedback.

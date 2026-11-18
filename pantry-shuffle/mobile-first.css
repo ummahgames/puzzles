@@ -29,3 +29,19 @@
   body[data-ug-game="swipe"] #gameCanvas,
   body[data-ug-game="pearls"] #game { touch-action: none; user-select: none; }
 }
+
+/* The game is the page at every viewport size. */
+body[data-game] .shell.shell { width:100%; max-width:none; margin:0; padding:0; }
+body[data-game] .shell > header { padding:4px max(8px,env(safe-area-inset-right)) 4px max(8px,env(safe-area-inset-left)); min-height:52px; border:0; }
+body[data-game] .shell > .footnote { display:none; }
+body[data-game] .game-menu { display:flex; justify-content:center; min-height:calc(100dvh - 52px); padding:16px; }
+body[data-game] .menu-art { display:none; }
+body[data-game] .menu-copy { max-width:520px; padding:12px; border:0; box-shadow:none; rotate:none; }
+body[data-game] #play { min-height:100dvh; padding:max(4px,env(safe-area-inset-top)) max(4px,env(safe-area-inset-right)) max(4px,env(safe-area-inset-bottom)) max(4px,env(safe-area-inset-left)); }
+body[data-game]:has(#play:not([hidden])) .shell > header { display:none; }
+body[data-game] .play-layout { gap:8px; }
+body[data-game] .scene-card, body[data-game] .sidebar { border:0; border-radius:0; box-shadow:none; }
+body[data-game] .scene-caption { border:0; border-radius:0; min-height:0; padding:6px; }
+body[data-game] .board { border:0; border-radius:0; box-shadow:none; padding:8px; }
+body[data-game] .play-top { padding:4px; gap:8px; }
+@media(min-width:901px) { body[data-game] .scene-card { min-height:calc(100dvh - 76px); } }

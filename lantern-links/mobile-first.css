@@ -36,3 +36,16 @@
   .play-top { padding-block: 6px; }
   .garden-panel { padding: 8px; }
 }
+
+/* Edge-to-edge game presentation, on phones and larger screens. */
+
+body[data-game] .shell.shell { width:100%; max-width:none; padding:0; }
+body[data-game] .shell > header { border:0; padding:4px 8px; min-height:52px; }
+body[data-game] .shell > footer { display:none; }
+body[data-game] #menuArt { display:none; }
+body[data-game] .menu { display:flex; justify-content:center; min-height:calc(100dvh - 52px); padding:16px; }
+body[data-game] .menu-copy { max-width:520px; }
+body[data-game]:has(#play:not([hidden])) .shell > header { display:none; }
+body[data-game] #play { min-height:100dvh; padding:max(8px,env(safe-area-inset-top)) max(8px,env(safe-area-inset-right)) max(8px,env(safe-area-inset-bottom)) max(8px,env(safe-area-inset-left)); }
+body[data-game] .garden-panel { border:0; border-radius:0; box-shadow:none; padding:4px; }
+body[data-game] #garden { outline:0; box-shadow:none; }
